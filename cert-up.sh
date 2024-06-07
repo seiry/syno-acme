@@ -86,6 +86,7 @@ reloadWebService () {
   if [ `grep -c "$FIND_MAJORVERSION_STR" $FIND_MAJORVERSION_FILE` -ne '0' ];then
     echo "MajorVersion = 7"
     synow3tool --gen-all && systemctl reload nginx
+    systemctl restart pkgctl-WebDAVServer.service
   else
     echo "MajorVersion < 7"
     /usr/syno/etc/rc.sysv/nginx.sh reload
